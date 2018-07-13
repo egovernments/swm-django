@@ -12,5 +12,5 @@ then run the below commands
 
 1. python3 manage.py makemigrations
 2. python3 manage.py migrate
-3. pyhton3 manage.py loaddata data.json
+3. python3 manage.py loaddata data.json
 4. python3 manage.py runserver
