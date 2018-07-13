@@ -1,0 +1,8 @@
+django
+requests
+--upgrade google-api-python-client
+--upgrade oauth2client
+python-dateutil
+psycopg2
+psycopg2-binary
+Pillow

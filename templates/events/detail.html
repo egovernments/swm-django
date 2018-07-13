@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Events</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    body,h1,h2,h3,h4,h5 {font-family: "Poppins", sans-serif}
+    body {font-size:16px;}
+    .w3-half img{margin-bottom:-6px;margin-top:16px;opacity:0.8;cursor:pointer}
+    .w3-half img:hover{opacity:1}
+    @media only screen and (max-width: 400px) {
+        .logoimage{
+            max-width: 150px;
+        }
+        .logo1 {
+    		display: inline;
+    	}
+    	.logo2 {
+    		display: none;
+    	}
+    }
+    @media only screen and (max-width: 992px) {
+        .maincontent {
+            padding-left: 10px;
+        }
+        .logo1 {
+    		display: none;
+    	}
+    	.logo2 {
+    		display: inline;
+    	}
+    	.header {
+        display: none;
+      }
+        .list {
+            display: none;
+        }
+        .maincontent {
+            padding: 0px !important; 
+        }
+    }
+    @media only screen and (max-width: 1100px) {
+        .logoimage {
+            width: 180px;
+        }
+        .maincontent {
+            padding-right: 10px;
+        }
+        .header {
+        	margin-left: -10px; margin-right: 0px; margin-bottom: 10px;
+        }
+    }
+    @media only screen and (min-width: 1100px) {
+        .w3-main {
+          	margin-right: 220px;
+        }
+        .header {
+        	margin-left: -10px; margin-right: -220px; margin-bottom: 10px;
+        }
+    }
+  </style>
+</head>
+<body>
+
+<div class="w3-container w3-top w3-green w3-xlarge" style="margin: 0px; z-index:4;"><a href="http://www.egovernments.org/"> <img style="width: 200px;" src="http://www.egovernments.org/images/egov-logo.png"></a>
+	<div class="w3-right">
+		<a href="javascript:void(0)" class="w3-button w3-green" onclick="w3_open_Right()" style="float: right;"><i class="fa fa-user-circle"></i></a>
+	</div>
+</div>
+<!-- LeftSidebar/menu -->
+<nav class="w3-sidebar w3-teal w3-collapse w3-large w3-padding w3-center" style="z-index:3;width:300px;font-weight:bold;" id="mySidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close()" class="w3-button w3-hide-large w3-center w3-display-topmiddle"><i class="fa fa-close"></i></a>
+  <hr>
+  <div class="w3-bar-block">
+    <a href="/events" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Events</a>
+    <a href="/notice" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Notices</a> 
+    <a href="/notification/index" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white weather1">Weather & Environment</a> 
+    <a href="/nearby/new/parks" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white ">Places Near Me</a>
+    <hr>
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Officials and Contacts</a> 
+    <a href="/cal" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Municipal Calendar</a> 
+    <a href="#" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Government Facilities</a>
+    <hr>
+  </div>
+</nav>
+<!-- RightSidebar/menu -->
+<nav class="w3-sidebar w3-teal w3-large w3-padding" style="z-index:3;width:200px;font-weight:bold;right: 0; display: none;" id="myRightSidebar"><br>
+  <a href="javascript:void(0)" onclick="w3_close_Right()" class="w3-button w3-display-topmiddle"><i class="fa fa-close"></i></a>
+  <div class="w3-bar-block">
+    <div class="w3-bar">
+      <div class="w3-center"><img src="avatar.png" class="w3-bar-item w3-circle"></div>
+      <div class="w3-center w3-large">Mike</div>
+    </div>
+    <hr>
+    <a href="#" onclick="w3_close_Right()" class="w3-bar-item w3-button w3-hover-white">Settings</a> 
+    <a href="#" onclick="w3_close_Right()" class="w3-bar-item w3-button w3-hover-white">Notice History</a> 
+    <a href="#" onclick="w3_close_Right()" class="w3-bar-item w3-button w3-hover-white">My Calendar</a>
+    <a href="/polls" onclick="w3_close()" class="w3-bar-item w3-button w3-hover-white">Polls</a>
+    
+    <hr>
+  </div>
+</nav>
+
+<!-- Top menu on small screens -->
+<div class="w3-container w3-top w3-hide-large w3-teal w3-xlarge w3-center" style="z-index:5;">
+  <a href="javascript:void(0)" class="w3-button w3-teal" onclick="w3_open()" style="float: left;"><i class="fa fa-bars"></i></a>
+  <span class="w3-margin-top logo1"><img class="logoimage" style="padding-top: 10px" src="http://www.egovernments.org/images/egov-logo.png"></span>
+  <span class="w3-margin-top logo2"><img class="logoimage" style="padding-top: 10px" src="http://www.egovernments.org/images/egov-logo.png"></span>
+  <a href="javascript:void(0)" class="w3-button w3-teal" onclick="w3_open_Right()" style="float: right;"><i class="fa fa-user-circle"></i></a>
+</div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main" onclick='w3_close_both()' style="margin-left:310px; margin-top: 51px; padding-top: 0px">
+<!-------Enter Your Content Here------>
+  <div class="w3-row completerow w3-blue header" style="padding-left: 10px; padding-right: 10px">
+    <h4 class="w3-left" style="padding: 0px; margin-top: 10px; margin-bottom: 10px">Events</h4>
+    <div class="w3-right w3-green" style="margin-top: 10px; margin-bottom: 10px; padding: 2px;">Time/Preferences</div>
+  </div>
+	<div class="w3-row w3-white w3-display-container maincontent" style="width: 100%;">
+		<div class="w3-col m3 w3-green w3-margin-right list">
+            <ul class="w3-ul">
+            {% for event in events %}
+              <li class="w3-padding-small"><h6 style="padding: 0px; margin: 0px"><a href="/events/{{event.id}}">{{ event.event_title}}</a></h6></li>
+            {% endfor %}
+            </ul>
+            
+		</div>
+		<div class="w3-rest w3-red w3-container content" style="padding: 0px;">
+            <div class="w3-gray w3-container w3-center w3-display-container" style="width: 100%; padding: 0px;">
+                <img src="{{event.event_image.url}}" height="215px" class="" style="padd">
+                <div class="w3-display-topright w3-container w3-margin-top">
+                    <a href="javascript:history.back()"><i class="fa fa-arrow-left w3-large"></i></a>
+                </div>
+            </div>
+            <div class="w3-red w3-container w3-padding" style="width: 100%">
+                <h2 class="heading">{{ event.event_title }}</h2>
+                <h6 class="source">{{ event.event_source }}</h6>
+                <p class="paragraph">{{ event.event_description }} </p>
+                <div class="w3-bar">
+                    <div class="w3-bar-item w3-white w3-round button" style="padding: 2px; margin-bottom: 10px; margin-right: 10px">  {{ event.event_start_date | date:"D, d M" }}</div>
+                    <div class="w3-bar-item w3-white w3-round button" style="padding: 2px; margin-bottom: 10px">{{ event.event_location }}</div>
+                </div>     
+                <form action="{% url 'events:attend' event.id %}" method="post">
+{% csrf_token %}
+<input type="submit" value="Attend">
+</form>
+		</div>
+	</div>
+	
+<!-- 
+<h1>{{ event.event_title }}</h1>
+<h3>{{ event.event_source }}</h3>
+<img src="{{event.event_image.url}}" width="250px">
+
+{% if message %}
+<h1>{{message}}</h1>
+{% endif %}
+ -->
+
+<!------------->
+</div>
+<!-- Footer --
+<div class="w3-green w3-container w3-bottom" id="footer" style="margin-top:75px;"><p class="w3-right">Powered by <a href="https://www.egovernments.org" title="eGovernments" target="_blank" class="w3-hover-opacity">eGovernments</a></p></div> -->
+<script> 
+function w3_open() {
+    document.getElementById("mySidebar").style.display = "block";
+    document.getElementById("myRightSidebar").style.display = "none";
+}
+function w3_open_Right() {
+    document.getElementById("myRightSidebar").style.display = "block";
+    document.getElementById("mySidebar").style.display = "none";
+} 
+function w3_close() {
+    document.getElementById("mySidebar").style.display = "none";
+}
+function w3_close_Right() {
+    document.getElementById("myRightSidebar").style.display = "none";
+}
+function w3_close_both() {
+  document.getElementById("myRightSidebar").style.display = "none";
+    document.getElementById("mySidebar").style.display = "none";
+}
+</script>
+
+</body>
+</html>

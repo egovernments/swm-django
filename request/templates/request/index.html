@@ -1,0 +1,80 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+    <title>Simple markers</title>
+    <style>
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="map"></div>
+    <script>
+
+      function initMap() {
+        var myLatLng = {lat: {{lat}}, lng: {{lng}}};
+        var icon = {
+    url: "https://www.iconsdb.com/icons/preview/black/map-marker-2-xxl.png", // url
+    scaledSize: new google.maps.Size(40, 40), // scaled size
+};
+var icon2 = {
+    url: "https://www.iconsdb.com/icons/preview/color/4FA30F/map-marker-2-xxl.png", // url
+    scaledSize: new google.maps.Size(40, 40), // scaled size
+};
+
+  var icon2 = {
+    url: "https://www.iconsdb.com/icons/preview/color/4FA30F/map-marker-2-xxl.png", // url
+    scaledSize: new google.maps.Size(40, 40), // scaled size
+};
+
+        var map = new google.maps.Map(document.getElementById('map'), {
+          zoom: 13,
+          center: myLatLng
+        });
+
+        var marker = new google.maps.Marker({
+          position: myLatLng,
+          map: map,
+        });
+        {% for request in requests %}
+        {% if request.on %}
+        var marker{{request.id}} = new google.maps.Marker({
+          position: {lat:{{request.lat}},lng:{{request.lng}}},
+          map: map,
+          icon:icon2,
+          url : '/request/{{request.id}}'
+        });
+        {% else %}
+        var marker{{request.id}} = new google.maps.Marker({
+          position: {lat:{{request.lat}},lng:{{request.lng}}},
+          map: map,
+          icon:icon,
+          url : '/request/create/{{request.id}}'
+        });
+        {% endif %}
+        {% endfor %}
+
+        {% for request in requests %}
+        google.maps.event.addListener(marker{{request.id}}, 'click', function() {
+        window.location.href = this.url;
+        });
+        {% endfor %}
+      }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBdlZuoheLPk7KrtZQeKkB6czRap1SNNaA&callback=initMap">
+    </script>
+  </body>
+</html>

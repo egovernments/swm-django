@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Place searches</title>
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
+    <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+    <style>
+    .modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+      /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+      #map {
+        height: 100%;
+      }
+      /* Optional: Makes the sample page fill the window. */
+      html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      #detail {
+        max-width: 200px;
+      }
+    </style>
+    <script>
+      // This example requires the Places library. Include the libraries=places
+      // parameter when you first load the API. For example:
+      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+      var map;
+      var infowindow;
+      var mylocation = {lat: {{ lat }}, lng: {{ lng }}};
+      function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: mylocation,
+          zoom: 15,
+          gestureHandling: 'greedy'
+        });
+
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: mylocation,
+          radius: 2000,
+          type: ['{{ type }}']
+        }, callback);
+      }
+
+      function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
+        }
+       var marker = new google.maps.Marker({
+              map: map,
+              position: mylocation,
+              icon: "https://maps.google.com/mapfiles/kml/shapes/info-i_maps.png",
+            });
+      }
+
+      function createMarker(place) {
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+
+        service.getDetails({
+          placeId: place.place_id
+        }, function(place, status) {
+          if (status === google.maps.places.PlacesServiceStatus.OK) {
+            var marker = new google.maps.Marker({
+              map: map,
+              position: place.geometry.location
+            });
+            google.maps.event.addListener(marker, 'click', function() {
+              var modal = document.getElementById('myModal');
+              try{
+              document.getElementById("pap").innerHTML = '<img src='+place.photos[0].getUrl({'maxWidth': 350, 'maxHeight': 350})+'>';
+              document.getElementById("directions").innerHTML = '<a href="https://www.google.com/maps/search/?api=1&query=' + '{{ type }}&query_place_id=' + place.place_id + '">Get Directions Here</a>';
+
+              document.getElementById("p").innerHTML = "Open Now : "+place.opening_hours.open_now+"<br><br><br>"+place.formatted_address+'<br><br><br>'+place.opening_hours.weekday_text ;
+              document.getElementById("heading").innerHTML = place.name;
+
+
+              }
+                catch(error){
+                  document.getElementById("pap").innerHTML = "";
+              
+                document.getElementById("directions").innerHTML = '<a href="https://www.google.com/maps/search/?api=1&query=' + '{{ type }}&query_place_id=' + place.place_id + '">Get Directions Here</a>';
+                document.getElementById("p").innerHTML = place.formatted_address+'<br><br><br>';
+                document.getElementById("heading").innerHTML = place.name;
+                }
+              modal.style.display = "block";
+            });
+          }
+        });
+      }
+
+      function function2() {
+        var modal = document.getElementById('myModal');
+        modal.style.display = 'none';}
+
+
+    </script>
+  </head>
+  <body>
+  <base target="_blank" />
+    <div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content" style="background-color: transparent;">
+    <span class="close" onclick="function2()">&times;</span>
+    <div class="w3-rest w3-container content" style="padding: 0px;">
+            <div class="w3-gray w3-container w3-center w3-display-container" style="width: 100%; padding: 0px;" id="pap">
+                <img src="b.jpg" height="215px" class="" style="padd">
+            </div>
+            <div class="w3-white w3-container w3-padding" style="width: 100%">
+                <h2 class="heading" id="heading">Iblur Park</h2>
+                <h6 class="source" id="source">Source: Google</h6>
+                <p class="paragraph" id="p">Some details about the places</p>
+                     
+                <div class="w3-bar-item w3-green w3-round w3-right" style="padding: 2px" id="directions">Get Directions</div>
+            </div>
+    </div>
+    <!-- <p id="p">sdgfhghjfdsdrtdtddyytbfbfjhf</p> -->
+  </div>
+
+</div>
+
+    <div id="map"></div>
+    <script src="https://maps.googleapis.com/maps/api/js?key={{ YOUR_API_KEY }}&libraries=places&callback=initMap" async defer></script>
+  </body>
+</html>

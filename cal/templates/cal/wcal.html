@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <style type="text/css">
+.month{
+	width: 100%;
+	background-color: #f2f2f2;
+	border-color: #bfbfbf;
+	border-width: 1px;
+	font-size: 40px;
+}
+.mon{
+	height: 100px;
+	width: 30px;
+}
+.tue{
+	height: 100px;
+	width: 30px;
+}
+.wed{
+	height: 100px;
+	width: 30px;
+}
+.thu{
+	height: 100px;
+	width: 30px;
+}
+.fri{
+	height: 100px;
+	width: 30px;
+}
+.sat{
+	height: 100px;
+	width: 30px;
+}
+.sun{
+	height: 100px;
+	width: 30px;
+}
+td, th {
+    border: 1px solid #dddddd;
+    padding: 8px;
+}
+</style>
+  <body>
+    {{ cal | safe}}
+    <br></br>
+    {{ icon0 | safe}}
+    {{ dates.0 }}
+    {{ days.0 }}
+    <br></br>
+    {{ icon1 | safe}}
+    {{ dates.1 }}
+    {{ days.1 }}
+    <br></br>
+    {{ icon2 | safe}}
+    {{ dates.2 }}
+    {{ days.2 }}
+    <br></br>
+    {{ icon3 | safe}}
+    {{ dates.3 }}
+    {{ days.3 }}
+    <br></br>
+    {{ icon4 | safe}}
+    {{ dates.4 }}
+    {{ days.4 }}
+
+  </body>
+</html>
